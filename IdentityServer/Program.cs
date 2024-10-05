@@ -17,10 +17,17 @@ builder.Services.AddIdentityServer()
             AllowedScopes = { "api1" }
         }
     ])
-    .AddInMemoryApiScopes(new[]
-    {
+    .AddInMemoryApiScopes(
+    [
         new ApiScope("api1", "My API")
-    })
+    ])
+    .AddInMemoryApiResources(
+    [
+        new ApiResource("api1", "My API")
+        {
+            Scopes = { "api1" }
+        }
+    ])
     .AddDeveloperSigningCredential();
 
 builder.Services.AddControllersWithViews();
